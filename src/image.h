@@ -14,9 +14,10 @@ struct Image
   int height;
   int channels;
 
-  Image(const char *filename); // construct from file
-  Image(const Image &img);     // copy
-  ~Image();                    // destructor
+  Image(const char *filename);                // construct from file
+  Image(const Image &img);                    // construct copy
+  Image(int width, int height, int channels); // construct blank
+  ~Image();                                   // destructor
 
   int write(const char *filename); // write to file location
 

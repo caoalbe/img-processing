@@ -4,7 +4,7 @@ CXXFLAGS = -static-libstdc++ # Compiler Flags
 SOURCES = src/main.cpp src/image.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
-TARGET = imgprocessing
+TARGET = main
 
 all:  $(TARGET)
 

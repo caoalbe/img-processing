@@ -16,16 +16,24 @@ Image::Image(const char *filename)
   }
   size = width * height * channels;
 }
-Image::Image(const Image &img)
-{
-  size = img.size;
-  width = img.width;
-  height = img.height;
-  channels = img.channels;
 
+Image::Image(const Image &img) : size(img.size), width(img.width), height(img.height), channels(img.channels)
+{
   data = new unsigned char[img.size];
   memcpy(data, img.data, size);
 }
+
+Image::Image(int width, int height, int channels) : width(width), height(height), channels(channels)
+{
+  size = width * height * channels;
+  data = new unsigned char[size];
+
+  for (int i = 0; i < size; i++)
+  {
+    data[i] = 0;
+  }
+}
+
 Image::~Image()
 {
   stbi_image_free(data);
