@@ -77,3 +77,42 @@ FileType Image::getFileType(const char *filename)
   printf("File name extension is not supported\n");
   exit(1);
 }
+
+int Image::flipHorizontal()
+{
+  unsigned char temp;
+  int left, right; // indices
+  for (int y = 0; y < height; y++)
+  {
+    for (int x = 0; x < width / 2; x++)
+    {
+      for (int c = 0; c < channels; c++)
+      {
+        left = y * width * channels + x * channels + c;
+        right = (y + 1) * width * channels - (x + 1) * channels + c;
+        temp = data[right];
+        data[right] = data[left];
+        data[left] = temp;
+      }
+    }
+  }
+  return 0;
+}
+
+int Image::flipVertical()
+{
+  unsigned char temp;
+  int top, bottom; // indices
+  for (int y = 0; y < height / 2; y++)
+  {
+    for (int x = 0; x < width * channels; x++)
+    {
+      top = y * width * channels + x;
+      bottom = (height - y - 1) * width * channels + x;
+      temp = data[bottom];
+      data[bottom] = data[top];
+      data[top] = temp;
+    }
+  }
+  return 0;
+}

@@ -5,8 +5,9 @@
 
 int main(int argc, char **argv)
 {
-  // Image test("input/campus.jpg");
-  // test.write("output/newCampus.png");
+  Image test("input/campus.jpg");
+  test.flipVertical();
+  test.write("output/vertical-flip.png");
 
   // Image copy(test);
   // for (int i = 0; i < 2 * copy.width * copy.channels; i++)
@@ -15,8 +16,8 @@ int main(int argc, char **argv)
   // }
   // copy.write("output/whiteRow.jpg");
 
-  Image blank(100, 100, 3);
-  blank.write("output/blank.jpg");
+  // Image blank(100, 100, 3);
+  // blank.write("output/blank.jpg");
 
   return 0;
 }
