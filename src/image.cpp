@@ -116,3 +116,23 @@ int Image::flipVertical()
   }
   return 0;
 }
+
+int Image::blackAndWhite()
+{
+  if (channels < 3)
+  {
+    return 1;
+  }
+
+  unsigned char intensity;
+  for (int p = 0; p < size; p += channels)
+  {
+    intensity = 0.299 * data[p] + 0.587 * data[p + 1] + 0.114 * data[p + 2];
+    for (int c = 0; c < channels; c++)
+    {
+      data[p + c] = intensity;
+    }
+  }
+
+  return 0;
+}

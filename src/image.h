@@ -26,4 +26,5 @@ struct Image
   // features
   int flipHorizontal();
   int flipVertical();
+  int blackAndWhite();
 };
