@@ -1,7 +1,7 @@
 CXX = g++ # Compiler
 CXXFLAGS = -static-libstdc++ # Compiler Flags
 
-SOURCES = src/main.cpp src/image.cpp
+SOURCES = src/main.cpp src/image.cpp src/features.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 TARGET = main

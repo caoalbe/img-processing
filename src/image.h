@@ -22,9 +22,4 @@ struct Image
   int write(const char *filename); // write to file location
 
   FileType getFileType(const char *filename); // get file extension
-
-  // features
-  int flipHorizontal();
-  int flipVertical();
-  int blackAndWhite();
 };

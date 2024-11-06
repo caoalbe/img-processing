@@ -1,13 +1,15 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-#include "image.h"
+#include "features.h"
 
 int main(int argc, char **argv)
 {
-  Image test("input/campus.jpg");
-  test.blackAndWhite();
-  test.write("output/blackandwhite.png");
+  Image input("input/campus.jpg");
+
+  Image *output = flipHorizontal(grayScale(&input));
+
+  output->write("output/chained.png");
 
   return 0;
 }
