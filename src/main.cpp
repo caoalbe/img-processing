@@ -5,11 +5,12 @@
 
 int main(int argc, char **argv)
 {
-  Image input("input/campus.jpg");
+  Image input("input/heather.jpg");
 
-  Image *output = flipHorizontal(grayScale(&input));
+  // Image *output = flipHorizontal(grayScale(&input));
+  Image *output = convolution(&input);
 
-  output->write("output/chained.png");
+  output->write("output/blur-convolve.png");
 
   return 0;
 }
