@@ -77,3 +77,25 @@ FileType Image::getFileType(const char *filename)
   printf("File name extension is not supported\n");
   exit(1);
 }
+
+unsigned char Image::query(int x, int y, int c)
+{
+  if (x < 0)
+  {
+    x = 0;
+  }
+  if (y < 0)
+  {
+    y = 0;
+  }
+  if (x > width - 1)
+  {
+    x = width - 1;
+  }
+  if (y > height - 1)
+  {
+    y = height - 1;
+  }
+
+  return data[(y * width + x) * channels + c];
+}

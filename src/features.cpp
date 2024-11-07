@@ -57,33 +57,25 @@ Image *grayScale(Image *src)
   return output;
 }
 
-// blur kernel
-double kernel[3][3] = {
-    {0.11, 0.11, 0.11},
-    {0.11, 0.11, 0.11},
-    {0.11, 0.11, 0.11},
-};
-
-Image *convolution(Image *src)
+Image *convolution(Image *src, Kernel *kernel)
 {
   Image *output = new Image(src->width, src->height, src->channels);
-
-  for (int y = 1; y < src->height - 1; y++)
+  unsigned char amount;
+  for (int y = 0; y < src->height; y++)
   {
-    for (int x = 1; x < src->width - 1; x++)
+    for (int x = 0; x < src->width; x++)
     {
       for (int c = 0; c < src->channels; c++)
       {
-        output->data[(y * src->width + x) * src->channels + c] =
-            kernel[0][0] * src->data[((y - 1) * src->width + (x - 1)) * src->channels + c] +
-            kernel[0][1] * src->data[((y - 1) * src->width + (x)) * src->channels + c] +
-            kernel[0][2] * src->data[((y - 1) * src->width + (x + 1)) * src->channels + c] +
-            kernel[1][0] * src->data[((y)*src->width + (x - 1)) * src->channels + c] +
-            kernel[1][1] * src->data[((y)*src->width + (x)) * src->channels + c] +
-            kernel[1][2] * src->data[((y)*src->width + (x + 1)) * src->channels + c] +
-            kernel[2][0] * src->data[((y + 1) * src->width + (x - 1)) * src->channels + c] +
-            kernel[2][1] * src->data[((y + 1) * src->width + (x)) * src->channels + c] +
-            kernel[2][2] * src->data[((y + 1) * src->width + (x + 1)) * src->channels + c];
+        amount = 0;
+        for (int kx = 0; kx < kernel->width; kx++)
+        {
+          for (int ky = 0; ky < kernel->height; ky++)
+          {
+            amount += kernel->query(kx, ky) * src->query(x + kx - kernel->halfWidth, y + ky - kernel->halfHeight, c);
+          }
+        }
+        output->data[(x + y * src->width) * src->channels + c] = amount;
       }
     }
   }
