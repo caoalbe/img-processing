@@ -1,13 +1,13 @@
 #include "kernel.h"
 #include <string.h>
 
-// basic 3x3 blue kernel
-Kernel::Kernel() : width(3), height(3), halfWidth(1), halfHeight(1)
+// basic 5x5 blur kernel
+Kernel::Kernel() : width(5), height(5), halfWidth(2), halfHeight(2)
 {
-  values = new double[9];
-  for (int i = 0; i < 9; i++)
+  values = new double[25];
+  for (int i = 0; i < 25; i++)
   {
-    values[i] = 0.11;
+    values[i] = 0.04;
   }
 }
 
